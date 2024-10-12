@@ -1,19 +1,22 @@
 import { useState } from "react";
+import { getChatCompletion } from "../scripts/openai";
 
-export function TextInput() {
-	const [location, setLocation] = useState("");
+export function TextInput(handleSubmit) {
+	const [text, setText] = useState("");
+	const [outputStream, setOutputStream] = useState("");
+
 	return (
 		<div>
-			<form>
+			<form onSubmit={() => handleSubmit(text)}>
 				<label htmlFor="location">
 					Lecture Transcript:
 					<input
 						className=""
 						type="text"
 						id="location"
-						value={location}
+						value={text}
 						placeholder="transcript"
-						onChange={(e) => setLocation(e.target.value)}
+						onChange={(e) => setText(e.target.value)}
 					/>
 				</label>
 			</form>
