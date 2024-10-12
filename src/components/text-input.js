@@ -23,6 +23,7 @@ export function TextInput(props) {
 						placeholder="transcript"
 						onChange={(e) => setText(e.target.value)}
 					/>
+					<button type="submit">Submit</button>
 				</label>
 			</form>
 		</div>
