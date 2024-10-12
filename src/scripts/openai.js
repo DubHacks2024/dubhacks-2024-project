@@ -1,7 +1,10 @@
 import OpenAI from "openai";
 
 export async function getChatCompletion(text) {
-	const client = new OpenAI(process.env.OPENAI_API_KEY);
+	const client = new OpenAI({
+		apiKey: "sk-proj-P0cRnDNOdV5Cu9TePGaRT3BlbkFJBwPJ1FMCEoxLB2cYB9vK",
+		dangerouslyAllowBrowser: true,
+	});
 
 	const stream = await client.chat.completions.create({
 		model: "gpt-3.5-turbo",
@@ -12,6 +15,7 @@ export async function getChatCompletion(text) {
 				content: `Summarize this long lecture transcript: ${text}`,
 			},
 		],
+		stream: true,
 	});
 	return stream;
 }

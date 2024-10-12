@@ -4,7 +4,6 @@ import { getChatCompletion } from "../scripts/openai";
 export function TextInput(props) {
 	const { handleSubmit } = props;
 	const [text, setText] = useState("");
-	const [outputStream, setOutputStream] = useState("");
 
 	return (
 		<div>
