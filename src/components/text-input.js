@@ -1,13 +1,19 @@
 import { useState } from "react";
 import { getChatCompletion } from "../scripts/openai";
 
-export function TextInput(handleSubmit) {
+export function TextInput(props) {
+	const { handleSubmit } = props;
 	const [text, setText] = useState("");
 	const [outputStream, setOutputStream] = useState("");
 
 	return (
 		<div>
-			<form onSubmit={() => handleSubmit(text)}>
+			<form
+				onSubmit={(e) => {
+					e.preventDefault();
+					handleSubmit(text);
+				}}
+			>
 				<label htmlFor="location">
 					Lecture Transcript:
 					<input
