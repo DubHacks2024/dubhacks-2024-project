@@ -13,12 +13,12 @@ export function TextInput(props) {
 					handleSubmit(text);
 				}}
 			>
-				<label htmlFor="location">
+				<label htmlFor="transcriptInput">
 					Lecture Transcript:
-					<input
+					<textarea
 						className=""
 						type="text"
-						id="location"
+						id="transcriptInput"
 						value={text}
 						placeholder="transcript"
 						onChange={(e) => setText(e.target.value)}
