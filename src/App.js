@@ -12,6 +12,8 @@ function App() {
 	const [quiz, setQuiz] = useState([]);
 
 	const handleSubmit = async (text, type) => {
+		setActive(type);
+
 		if (type === "summary") {
 			const stream = await getSummary(text);
 			let runningStream = "";
