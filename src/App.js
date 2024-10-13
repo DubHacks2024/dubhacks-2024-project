@@ -57,6 +57,22 @@ function App() {
 			return (
 				<article>
 					<h1>DISCUSSION</h1>
+					<h1>DISCUSSION</h1>
+					<h1>DISCUSSION</h1>
+					<h1>DISCUSSION</h1>
+					<h1>DISCUSSION</h1>
+					<h1>DISCUSSION</h1>
+					<h1>DISCUSSION</h1>
+					<h1>DISCUSSION</h1>
+					<h1>DISCUSSION</h1>
+					<h1>DISCUSSION</h1>
+					<h1>DISCUSSION</h1>
+					<h1>DISCUSSION</h1>
+					<h1>DISCUSSION</h1>
+					<h1>DISCUSSION</h1>
+					<h1>DISCUSSION</h1>
+					<h1>DISCUSSION</h1>
+					<h1>DISCUSSION</h1>
 				</article>
 			);
 		} else if (active === "flashcards") {
