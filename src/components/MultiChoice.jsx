@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../styles/quiz.css";
 
 function MultiChoice({ problem }) {
 	const [selectedOption, setSelectedOption] = useState(-1);
@@ -37,7 +38,7 @@ function MultiChoice({ problem }) {
 	};
 
 	const display = (
-		<div>
+		<div className="">
 			<h2>{problem.prompt}</h2>
 			<div>
 				{renderOptions()}
@@ -50,17 +51,17 @@ function MultiChoice({ problem }) {
 	);
 
 	if (!isSubmitted) {
-		return <div>{display}</div>;
+		return <div className="quiz-section">{display}</div>;
 	} else if (selectedOption == problem.answer) {
 		return (
-			<div>
+			<div className="quiz-section">
 				{display}
 				<span style={{ color: "green", fontSize: "24px" }}>&#10004; Correct!</span>
 			</div>
 		);
 	} else {
 		return (
-			<div>
+			<div className="quiz-section">
 				{display}
 				<span style={{ fontSize: "24px" }}>❌ Incorrect</span>
 				<p>{problem.explanation}</p>

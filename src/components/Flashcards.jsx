@@ -20,11 +20,15 @@ function Flashcards({ flashcards }) {
 
 	return (
 		<>
-			<Flashcard frontText={flashcards[cardId].front} backText={flashcards[cardId].back} />
-			<div>
-				<button onClick={() => changeCard(true)}>Prev</button>
-				<button onClick={() => changeCard(false)}>Next</button>
-			</div>
+			{flashcards.length > 0 && (
+				<>
+					<Flashcard frontText={flashcards[cardId].front} backText={flashcards[cardId].back} />
+					<div>
+						<button onClick={() => changeCard(true)}>Prev</button>
+						<button onClick={() => changeCard(false)}>Next</button>
+					</div>
+				</>
+			)}
 		</>
 	);
 }
