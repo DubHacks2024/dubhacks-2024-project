@@ -31,10 +31,9 @@ function App() {
 		} else if (type === "quiz") {
 			const response = await getQuiz(text);
 			const json = JSON.parse(response.choices[0].message.content);
-			console.log(json.quiz);
 			setQuiz(json.quiz);
 		} else if (type === "discussion") {
-			return <CoordinatedClassmatesComponent transcript={text} />;
+			setStreamText(text);
 		}
 	};
 
@@ -68,6 +67,7 @@ function App() {
 			return (
 				<article>
 					<h1>DISCUSSION</h1>
+					<CoordinatedClassmatesComponent transcript={streamText} />;
 				</article>
 			);
 		} else if (active === "flashcards") {
