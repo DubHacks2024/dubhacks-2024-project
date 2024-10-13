@@ -17,6 +17,7 @@ export function TextInput({ onSubmit }) {
 				/>
 				<button onClick={() => onSubmit(text, "summary")}>Generate Summary</button>
 				<button onClick={() => onSubmit(text, "flashcards")}>Generate Flashcards</button>
+				<button onClick={() => onSubmit(text, "quiz")}>Generate Quiz</button>
 			</label>
 		</div>
 	);
