@@ -51,21 +51,21 @@ function MultiChoice({ problem }) {
 	);
 
 	if (!isSubmitted) {
-		return <div className="quiz-section">{display}</div>;
+		return <li className="quiz-section">{display}</li>;
 	} else if (selectedOption == problem.answer) {
 		return (
-			<div className="quiz-section">
+			<li className="quiz-section">
 				{display}
 				<span style={{ color: "green", fontSize: "24px" }}>&#10004; Correct!</span>
-			</div>
+			</li>
 		);
 	} else {
 		return (
-			<div className="quiz-section">
+			<li className="quiz-section">
 				{display}
 				<span style={{ fontSize: "24px" }}>❌ Incorrect</span>
 				<p>{problem.explanation}</p>
-			</div>
+			</li>
 		);
 	}
 }
