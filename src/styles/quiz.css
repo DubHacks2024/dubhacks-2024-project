@@ -5,4 +5,11 @@
     padding: 16px; /* Optional: add some padding */
     margin: 20px; /* Optional: margin around the container */
     border-radius: 8px; /* Optional: rounded corners */
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#quiz-list {
+    padding: 0;
+    margin-left: 7%;
+    margin-right: 7%;
 }

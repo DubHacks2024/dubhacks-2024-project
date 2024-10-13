@@ -6,15 +6,16 @@ function Flashcards({ flashcards }) {
 	const [cardId, setCardId] = useState(0);
 
 	const changeCard = (prev) => {
-		//true for prev, false for next
-		if (prev) {
-			if (cardId > 0) {
-				setCardId(cardId - 1);
-			}
-		} else {
-			if (cardId < flashcards.length - 1) {
-				setCardId(cardId + 1);
-			}
+		// true for prev, false for next
+		let inBound = (prev) ? (cardId > 0) : (cardId < flashcards.length - 1);
+		let increment = prev ? -1 : 1;
+		if (inBound) {
+			setCardId(cardId + increment);
+			let card = document.querySelector('.flashcard');
+			card.classList.add('switching');
+			setTimeout(() => {
+				card.classList.remove('switching');
+			}, 200);
 		}
 	};
 
