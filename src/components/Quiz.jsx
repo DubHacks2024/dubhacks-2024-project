@@ -4,7 +4,7 @@ import MultiChoice from "./MultiChoice";
 function Quiz({ quiz }) {
 	return (
 		<div>
-			<ol>
+			<ol id="quiz-list">
 				{quiz.map((cur, idx) => {
 					return <MultiChoice problem={cur} key={idx} />;
 				})}

@@ -46,10 +46,16 @@ function App() {
 
 	const display = () => {
 		if (active === "summary") {
-			return <article>{streamText}</article>;
+			return (
+				<article>
+					<h1>SUMMARY</h1>
+					{streamText}
+				</article>
+			);
 		} else if (active === "quiz") {
 			return (
 				<article>
+					<h1>QUIZ</h1>
 					<Quiz quiz={quiz} />
 				</article>
 			);
@@ -57,27 +63,12 @@ function App() {
 			return (
 				<article>
 					<h1>DISCUSSION</h1>
-					<h1>DISCUSSION</h1>
-					<h1>DISCUSSION</h1>
-					<h1>DISCUSSION</h1>
-					<h1>DISCUSSION</h1>
-					<h1>DISCUSSION</h1>
-					<h1>DISCUSSION</h1>
-					<h1>DISCUSSION</h1>
-					<h1>DISCUSSION</h1>
-					<h1>DISCUSSION</h1>
-					<h1>DISCUSSION</h1>
-					<h1>DISCUSSION</h1>
-					<h1>DISCUSSION</h1>
-					<h1>DISCUSSION</h1>
-					<h1>DISCUSSION</h1>
-					<h1>DISCUSSION</h1>
-					<h1>DISCUSSION</h1>
 				</article>
 			);
 		} else if (active === "flashcards") {
 			return (
 				<article>
+					<h1>FLASHCARDS</h1>
 					<Flashcards flashcards={flashcards} />
 				</article>
 			);
