@@ -1,10 +1,10 @@
 import { useState } from "react";
+import CoordinatedClassmatesComponent from "./components/Discussion";
 import Flashcards from "./components/Flashcards";
 import Quiz from "./components/Quiz";
 import { TextInput } from "./components/text-input";
 import { getFlashcards, getQuiz, getSummary } from "./scripts/openai";
 import "./styles/App.css";
-import CoordinatedClassmatesComponent from "./scripts/Discussion";
 
 function App() {
 	const [streamText, setStreamText] = useState("");
@@ -28,13 +28,13 @@ function App() {
 			const json = JSON.parse(response.choices[0].message.content);
 
 			setFlashcards(json.flashcards);
-		} else if (type === 'quiz') {
+		} else if (type === "quiz") {
 			const response = await getQuiz(text);
 			const json = JSON.parse(response.choices[0].message.content);
 			console.log(json.quiz);
 			setQuiz(json.quiz);
-		} else if (type === 'discussion') {
-			return <CoordinatedClassmatesComponent transcript={text} />
+		} else if (type === "discussion") {
+			return <CoordinatedClassmatesComponent transcript={text} />;
 		}
 	};
 
@@ -90,16 +90,36 @@ function App() {
 			<section id="right">
 				<nav>
 					<ul>
-						<li id="summary" onClick={() => {select("summary");}}>
+						<li
+							id="summary"
+							onClick={() => {
+								select("summary");
+							}}
+						>
 							Summary
 						</li>
-						<li id="quiz" onClick={() => {select("quiz")}}>
+						<li
+							id="quiz"
+							onClick={() => {
+								select("quiz");
+							}}
+						>
 							Quiz
 						</li>
-						<li id="discussion" onClick={() => {select("discussion")}}>
+						<li
+							id="discussion"
+							onClick={() => {
+								select("discussion");
+							}}
+						>
 							Discussion
 						</li>
-						<li id="flashcards" onClick={() => {select("flashcards")}}>
+						<li
+							id="flashcards"
+							onClick={() => {
+								select("flashcards");
+							}}
+						>
 							Flashcards
 						</li>
 					</ul>
