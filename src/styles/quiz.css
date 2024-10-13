@@ -1,8 +1,8 @@
-.quiz-section{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
-    overflow: scroll;
+.quiz-section {
+    max-height: 80vh; /* Adjust this value to control the height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional: add a border for visual separation */
+    padding: 16px; /* Optional: add some padding */
+    margin: 20px; /* Optional: margin around the container */
+    border-radius: 8px; /* Optional: rounded corners */
 }
