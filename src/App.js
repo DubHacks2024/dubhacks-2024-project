@@ -1,14 +1,15 @@
 import { useState } from "react";
 import "./App.css";
+import { Flashcard } from "./components/Flashcard";
+import Flashcards from "./components/Flashcards";
 import { TextInput } from "./components/text-input";
-import logo from "./logo.svg";
-import { getChatCompletion } from "./scripts/openai";
+import { getChatCompletion, getFlashcards } from "./scripts/openai";
 
 function App() {
 	const [streamText, setStreamText] = useState("");
+	const [flashcards, setFlashcards] = useState([]);
 
 	const handleSubmit = async (text) => {
-		console.log("SUBMIT");
 		const stream = await getChatCompletion(text);
 
 		let runningStream = "";
@@ -19,10 +20,17 @@ function App() {
 		}
 	};
 
+	const handleGenerateFlashcards = async (text) => {
+		const res = await getFlashcards(text);
+		const json = JSON.parse(res.choices[0].message.content);
+		setFlashcards(json.flashcards);
+	};
+
 	return (
 		<div className="App">
 			<header className="App-header">
-				<TextInput handleSubmit={handleSubmit} />
+				<TextInput onSubmit={handleSubmit} onGenerateFlashcards={handleGenerateFlashcards} />
+				{flashcards.length > 0 && <Flashcards flashcards={flashcards} />}
 				<div>{streamText}</div>
 			</header>
 		</div>
