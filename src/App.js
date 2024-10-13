@@ -12,8 +12,7 @@ function App() {
 	const [quiz, setQuiz] = useState([]);
 
 	const handleSubmit = async (text, type) => {
-		setActive(type);
-
+		select(type);
 		if (type === "summary") {
 			const stream = await getSummary(text);
 			let runningStream = "";
@@ -28,22 +27,25 @@ function App() {
 			const json = JSON.parse(response.choices[0].message.content);
 
 			setFlashcards(json.flashcards);
-		} else {
+		} else if (type === 'quiz') {
 			const response = await getQuiz(text);
 			const json = JSON.parse(response.choices[0].message.content);
 			console.log(json.quiz);
 			setQuiz(json.quiz);
+		} else {
+			throw new Error("I think this is unsupported action");
 		}
 	};
 
-	const select = (evt) => {
+	const select = (type) => {
 		let options = document.querySelectorAll("#right > nav li");
 		for (let i = 0; i < options.length; i++) {
 			let curr = options[i];
 			curr.classList.remove("active");
 		}
-		evt.target.classList.add("active");
-		setActive(evt.target.id);
+		let option = document.getElementById(type);
+		option.classList.add("active");
+		setActive(option.id);
 	};
 
 	const display = () => {
