@@ -1,0 +1,47 @@
+#left, #right {
+  text-align: center;
+  background-color: #282c34;
+  color: white;
+}
+
+#left {
+  width: 40vw;
+  border-right: burlywood 8px double;
+}
+
+#right {
+  width: 60vw;
+}
+
+.text-input {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+#right > nav ul {
+  min-height: 30px;
+  height: 7vh;
+  display: grid;
+  grid: auto-flow / 1fr 1fr 1fr 1fr;
+  margin: 0;
+  padding: 0;
+}
+
+#right > nav li {
+  list-style: none;
+  padding: 1vh;
+  size: calc(3px + 0.5vmin);
+  border-bottom: 3px whitesmoke solid;
+  user-select: none;
+}
+
+#right > nav li.active {
+  font-weight: bold;
+  size: calc(5px + 0.8vmin);
+  border: 3px whitesmoke solid;
+  border-bottom: 3px transparent solid;
+}
