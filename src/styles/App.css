@@ -45,3 +45,8 @@
   border: 3px whitesmoke solid;
   border-bottom: 3px transparent solid;
 }
+
+#right article {
+  overflow-y: scroll;
+  height: 90vh;
+}
