@@ -1,0 +1,14 @@
+.textarea{
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    background-color: #fff;
+    transition: border-color 0.3s;
+}
