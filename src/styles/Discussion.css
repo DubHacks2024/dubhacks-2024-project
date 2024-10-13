@@ -1,0 +1,12 @@
+.chat-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px;
+    overflow-y: auto;
+    gap: 15px;
+}
+
+.tag{
+    color: 'black';
+}
