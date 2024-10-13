@@ -89,16 +89,16 @@ function App() {
 			<section id="right">
 				<nav>
 					<ul>
-						<li id="summary" onClick={select}>
+						<li id="summary" onClick={() => {select("summary");}}>
 							Summary
 						</li>
-						<li id="quiz" onClick={select}>
+						<li id="quiz" onClick={() => {select("quiz");}}>
 							Quiz
 						</li>
-						<li id="discussion" onClick={select}>
+						<li id="discussion" onClick={() => {select("discussion");}}>
 							Discussion
 						</li>
-						<li id="flashcards" onClick={select}>
+						<li id="flashcards" onClick={() => {select("flashcards");}}>
 							Flashcards
 						</li>
 					</ul>
