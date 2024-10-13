@@ -1,55 +1,17 @@
-
 import { act, useState } from "react";
-import "./styles/App.css";
+import Flashcards from "./components/Flashcards";
+import Quiz from "./components/Quiz";
 import { TextInput } from "./components/text-input";
 import { getFlashcards, getQuiz, getSummary } from "./scripts/openai";
+import "./styles/App.css";
 
 function App() {
 	const [streamText, setStreamText] = useState("");
-	const [active, setActive] = useState('');
+	const [active, setActive] = useState("");
 	const [flashcards, setFlashcards] = useState([]);
 	const [quiz, setQuiz] = useState([]);
 
 	const handleSubmit = async (text, type) => {
-		// const response = await fetch("/api/openai", {
-		// 	method: "POST",
-		// 	headers: {
-		// 		"Content-Type": "application/json",
-		// 	},
-		// 	body: JSON.stringify({
-		// 		query: text,
-		// 		type: type,
-		// 	}),
-		// });
-
-		// //stream text only if summary
-		// if (type === "summary" && response.body && typeof response.body.getReader === "function") {
-		// 	const reader = response.body.getReader();
-
-		// 	// Create a TextDecoder to decode the binary data to a string
-		// 	const decoder = new TextDecoder();
-		// 	let runningSumText = "";
-		// 	const readStream = async () => {
-		// 		while (true) {
-		// 			const { done, value } = await reader.read();
-		// 			if (done) break;
-
-		// 			// Decode the chunk of data to a string using TextDecoder
-		// 			const chunk = decoder.decode(value, { stream: true });
-
-		// 			// keep running answer
-		// 			runningSumText += chunk;
-		// 			// Update state with as streamed data comes in to get that typing effect
-		// 			//format text before updating state
-
-		// 			setStreamText(runningSumText);
-		// 		}
-		// 	};
-
-		// 	// Start reading and processing the stream
-		// 	readStream();
-		// }
-
 		if (type === "summary") {
 			const stream = await getSummary(text);
 			let runningStream = "";
@@ -76,47 +38,58 @@ function App() {
 		let options = document.querySelectorAll("#right > nav li");
 		for (let i = 0; i < options.length; i++) {
 			let curr = options[i];
-			curr.classList.remove('active');
+			curr.classList.remove("active");
 		}
-		evt.target.classList.add('active');
+		evt.target.classList.add("active");
 		setActive(evt.target.id);
-	}
+	};
 
 	const display = () => {
-		if (active === 'summary') {
-			return <article>
-				<h1>SUMMARY</h1>
-			</article>;
-		} else if (active === 'quiz') {
-			return <article>
-				<h1>QUIZ</h1>
-			</article>;
-		} else if (active === 'discussion') {
-			return <article>
-				<h1>DISCUSSION</h1>
-			</article>;
-		} else if (active === 'flashcards') {
-			return <article>
-				<h1>FLASHCARDS</h1>
-			</article>;
+		if (active === "summary") {
+			return <article>{streamText}</article>;
+		} else if (active === "quiz") {
+			return (
+				<article>
+					<Quiz quiz={quiz} />
+				</article>
+			);
+		} else if (active === "discussion") {
+			return (
+				<article>
+					<h1>DISCUSSION</h1>
+				</article>
+			);
+		} else if (active === "flashcards") {
+			return (
+				<article>
+					<Flashcards flashcards={flashcards} />
+				</article>
+			);
 		}
-	}
+	};
 
 	return (
 		<>
 			<section id="left">
 				<div className="text-input">
-					<TextInput handleSubmit={handleSubmit} />
-					<div>{streamText}</div>
+					<TextInput onSubmit={handleSubmit} />
 				</div>
 			</section>
 			<section id="right">
 				<nav>
 					<ul>
-						<li id="summary" onClick={select}>Summary</li>
-						<li id="quiz" onClick={select}>Quiz</li>
-						<li id="discussion" onClick={select}>Discussion</li>
-						<li id="flashcards" onClick={select}>Flashcards</li>
+						<li id="summary" onClick={select}>
+							Summary
+						</li>
+						<li id="quiz" onClick={select}>
+							Quiz
+						</li>
+						<li id="discussion" onClick={select}>
+							Discussion
+						</li>
+						<li id="flashcards" onClick={select}>
+							Flashcards
+						</li>
 					</ul>
 				</nav>
 				{display()}
