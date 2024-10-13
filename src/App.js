@@ -1,22 +1,74 @@
+
 import { act, useState } from "react";
 import "./styles/App.css";
 import { TextInput } from "./components/text-input";
-import logo from "./logo.svg";
-import { getChatCompletion } from "./scripts/openai";
+import { getFlashcards, getQuiz, getSummary } from "./scripts/openai";
 
 function App() {
 	const [streamText, setStreamText] = useState("");
 	const [active, setActive] = useState('');
+	const [flashcards, setFlashcards] = useState([]);
+	const [quiz, setQuiz] = useState([]);
 
-	const handleSubmit = async (text) => {
-		console.log("SUBMIT");
-		const stream = await getChatCompletion(text);
+	const handleSubmit = async (text, type) => {
+		// const response = await fetch("/api/openai", {
+		// 	method: "POST",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	body: JSON.stringify({
+		// 		query: text,
+		// 		type: type,
+		// 	}),
+		// });
 
-		let runningStream = "";
-		for await (const part of stream) {
-			const chunk = part.choices[0]?.delta?.content || "";
-			runningStream += chunk;
-			setStreamText(runningStream);
+		// //stream text only if summary
+		// if (type === "summary" && response.body && typeof response.body.getReader === "function") {
+		// 	const reader = response.body.getReader();
+
+		// 	// Create a TextDecoder to decode the binary data to a string
+		// 	const decoder = new TextDecoder();
+		// 	let runningSumText = "";
+		// 	const readStream = async () => {
+		// 		while (true) {
+		// 			const { done, value } = await reader.read();
+		// 			if (done) break;
+
+		// 			// Decode the chunk of data to a string using TextDecoder
+		// 			const chunk = decoder.decode(value, { stream: true });
+
+		// 			// keep running answer
+		// 			runningSumText += chunk;
+		// 			// Update state with as streamed data comes in to get that typing effect
+		// 			//format text before updating state
+
+		// 			setStreamText(runningSumText);
+		// 		}
+		// 	};
+
+		// 	// Start reading and processing the stream
+		// 	readStream();
+		// }
+
+		if (type === "summary") {
+			const stream = await getSummary(text);
+			let runningStream = "";
+			for await (const part of stream) {
+				const chunk = part.choices[0]?.delta?.content || "";
+				runningStream += chunk;
+				setStreamText(runningStream);
+			}
+			return;
+		} else if (type === "flashcards") {
+			const response = await getFlashcards(text);
+			const json = JSON.parse(response.choices[0].message.content);
+
+			setFlashcards(json.flashcards);
+		} else {
+			const response = await getQuiz(text);
+			const json = JSON.parse(response.choices[0].message.content);
+			console.log(json.quiz);
+			setQuiz(json.quiz);
 		}
 	};
 
