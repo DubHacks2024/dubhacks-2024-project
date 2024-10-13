@@ -23,7 +23,7 @@ function MultiChoice({ problem }) {
 						<input
 							type="radio"
 							value={i}
-							checked={selectedOption === i}
+							checked={selectedOption == i}
 							onChange={handleOptionChange}
 							disabled={isSubmitted}
 						></input>
@@ -48,23 +48,22 @@ function MultiChoice({ problem }) {
 			<br></br>
 		</div>
 	);
-	console.log(isSubmitted);
 
-	if (isSubmitted == false && selectedOption == -1) {
+	if (!isSubmitted) {
 		return <div>{display}</div>;
 	} else if (selectedOption == problem.answer) {
 		return (
 			<div>
 				{display}
-				<span style={{ color: "green", fontSize: "24px" }}>&#10004;</span>
+				<span style={{ color: "green", fontSize: "24px" }}>&#10004; Correct!</span>
 			</div>
 		);
 	} else {
 		return (
 			<div>
 				{display}
-				<span style={{ fontSize: "24px" }}>❌</span>
-				{problem.explanation}
+				<span style={{ fontSize: "24px" }}>❌ Incorrect</span>
+				<p>{problem.explanation}</p>
 			</div>
 		);
 	}
