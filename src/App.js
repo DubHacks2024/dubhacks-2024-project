@@ -1,13 +1,12 @@
-import { useState } from "react";
+import { act, useState } from "react";
 import "./styles/App.css";
 import { TextInput } from "./components/text-input";
 import logo from "./logo.svg";
 import { getChatCompletion } from "./scripts/openai";
 
-let active = '';
-
 function App() {
 	const [streamText, setStreamText] = useState("");
+	const [active, setActive] = useState('');
 
 	const handleSubmit = async (text) => {
 		console.log("SUBMIT");
@@ -20,6 +19,36 @@ function App() {
 			setStreamText(runningStream);
 		}
 	};
+
+	const select = (evt) => {
+		let options = document.querySelectorAll("#right > nav li");
+		for (let i = 0; i < options.length; i++) {
+			let curr = options[i];
+			curr.classList.remove('active');
+		}
+		evt.target.classList.add('active');
+		setActive(evt.target.id);
+	}
+
+	const display = () => {
+		if (active === 'summary') {
+			return <article>
+				<h1>SUMMARY</h1>
+			</article>;
+		} else if (active === 'quiz') {
+			return <article>
+				<h1>QUIZ</h1>
+			</article>;
+		} else if (active === 'discussion') {
+			return <article>
+				<h1>DISCUSSION</h1>
+			</article>;
+		} else if (active === 'flashcards') {
+			return <article>
+				<h1>FLASHCARDS</h1>
+			</article>;
+		}
+	}
 
 	return (
 		<>
@@ -38,41 +67,10 @@ function App() {
 						<li id="flashcards" onClick={select}>Flashcards</li>
 					</ul>
 				</nav>
-				<Page />
+				{display()}
 			</section>
 		</>
 	);
-}
-
-function select(evt) {
-	let options = document.querySelectorAll("#right > nav li");
-	for (let i = 0; i < options.length; i++) {
-		let curr = options[i];
-		curr.classList.remove('active');
-	}
-	active = evt.target.id;
-	evt.target.classList.add('active');
-	Page();
-}
-
-function Page() {
-	if (active === 'summary') {
-		return <article>
-			<h1>SUMMARY</h1>
-		</article>;
-	} else if (active === 'quiz') {
-		return <article>
-			<h1>QUIZ</h1>
-		</article>;
-	} else if (active === 'discussion') {
-		return <article>
-			<h1>DISCUSSION</h1>
-		</article>;
-	} else if (active === 'flashcards') {
-		return <article>
-			<h1>FLASHCARDS</h1>
-		</article>;
-	}
 }
 
 export default App;
