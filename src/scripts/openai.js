@@ -2,7 +2,7 @@ import OpenAI from "openai";
 
 export async function getSummary(text) {
 	const client = new OpenAI({
-		apiKey: "sk-proj-P0cRnDNOdV5Cu9TePGaRT3BlbkFJBwPJ1FMCEoxLB2cYB9vK",
+		apiKey: "OPENAI_API_KEY",
 		dangerouslyAllowBrowser: true,
 	});
 
@@ -26,7 +26,7 @@ export async function getSummary(text) {
 
 export async function getFlashcards(text) {
 	const client = new OpenAI({
-		apiKey: "sk-proj-P0cRnDNOdV5Cu9TePGaRT3BlbkFJBwPJ1FMCEoxLB2cYB9vK",
+		apiKey: "OPENAI_API_KEY",
 		dangerouslyAllowBrowser: true,
 	});
 
@@ -50,7 +50,7 @@ export async function getFlashcards(text) {
 
 export async function getQuiz(text) {
 	const client = new OpenAI({
-		apiKey: "sk-proj-P0cRnDNOdV5Cu9TePGaRT3BlbkFJBwPJ1FMCEoxLB2cYB9vK",
+		apiKey: "OPENAI_API_KEY",
 		dangerouslyAllowBrowser: true,
 	});
 

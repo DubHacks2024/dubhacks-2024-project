@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "../styles/Discussion.css";
 
 const openai = new OpenAI({
-	apiKey: "sk-proj-P0cRnDNOdV5Cu9TePGaRT3BlbkFJBwPJ1FMCEoxLB2cYB9vK",
+	apiKey: "OPENAI_API_KEY",
 	dangerouslyAllowBrowser: true,
 });
 
